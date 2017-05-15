@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 import {
-  View,
-  Text,
+  ScrollView,
   StyleSheet,
 } from 'react-native';
 import axios from 'axios';
 
-const renderAlbums = (albums) => albums.map((album) => {
-  const { artist, title } = album;
+import Album from './Album';
 
-  return (
-    <View key={`${artist}|${title}`}>
-      <Text>{artist}</Text>
-      <Text>{title}</Text>
-    </View>
-  );
-});
+const renderAlbums = (albums) => albums.map((album) =>
+  <Album key={album.title} {...album} />
+);
 
-class AlbumList extends Component {
+export default class AlbumList extends Component {
   state = { albums: [] }
 
   componentWillMount() {
@@ -29,10 +23,9 @@ class AlbumList extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>List</Text>
+      <ScrollView style={styles.container}>
         {renderAlbums(this.state.albums)}
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -42,5 +35,3 @@ const styles = StyleSheet.create({
   //   flex: 1,
   // },
 });
-
-export default AlbumList;
