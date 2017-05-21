@@ -8,7 +8,13 @@ import {
   StyleSheet
 } from 'react-native';
 
-export const Input = ({ labelText, onChangeText, placeholderText, value }) => {
+export const Input = ({
+  labelText,
+  onChangeText,
+  placeholderText,
+  secureTextEntry,
+  value
+}) => {
   const { inputStyle, labelStyle, containerStyle } = styles;
 
   return (
@@ -17,11 +23,10 @@ export const Input = ({ labelText, onChangeText, placeholderText, value }) => {
       <TextInput
         onChangeText={onChangeText}
         placeholder={placeholderText}
+        secureTextEntry={secureTextEntry}
         style={inputStyle}
         value={value}
-      >
-        {value}
-      </TextInput>
+      />
     </View>
   );
 };
