@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
 
 export const Button = ({ children, onPress }) => (
   <TouchableOpacity onPress={onPress} style={styles.button}>

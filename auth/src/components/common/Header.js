@@ -5,7 +5,7 @@ import {
   StyleSheet,
  } from 'react-native';
 
-const Header = ({ children }) => {
+export const Header = ({ children }) => {
   const { textStyle, viewStyle } = styles;
 
   return (
@@ -29,5 +29,3 @@ const styles = StyleSheet.create({
     elevation: 4,
   }
 });
-
-export default Header;
