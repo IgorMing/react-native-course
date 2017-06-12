@@ -16,6 +16,20 @@ class LoginForm extends Component {
     //     firebase.auth().createUserWithEmailAndPassword(email, password)
   }
 
+  renderButton() {
+    const { loading } = this.props;
+
+    if (loading) {
+      return <Spinner size="small" />;
+    }
+
+    return (
+      <Button onPress={this.onButtonPress.bind(this)}>
+        Login
+      </Button>
+    );
+  }
+
   render() {
     const {
       props: {
@@ -48,9 +62,7 @@ class LoginForm extends Component {
         </CardSection>
         <Text style={styles.errorStyle}>{error}</Text>
         <CardSection>
-          <Button onPress={this.onButtonPress.bind(this)}>
-            Login
-          </Button>
+          {this.renderButton()}
         </CardSection>
       </Card>
     );
@@ -69,11 +81,12 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ auth }) => {
-  const { email, password, error } = auth;
+  const { email, password, loading, error } = auth;
 
   return {
     email,
     password,
+    loading,
     error
   };
 };
