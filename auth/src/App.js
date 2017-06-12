@@ -1,16 +1,20 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import {
-  View,
-  StyleSheet,
-} from 'react-native';
+import { View } from 'react-native';
 import firebase from 'firebase';
 
-import { Button, Header, Spinner } from './components/common';
-import LoginForm from './components/LoginForm';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 
-export default class MyComponent extends Component {
+import ReduxThunk from 'redux-thunk';
+import Reducers from './Reducers';
+import { Button, Header, Spinner } from './components/common';
+import LoginForm from './components/auth/LoginForm';
+
+const store = createStore(Reducers, {}, applyMiddleware(ReduxThunk));
+
+export default class App extends Component {
   state = { loggedIn: null };
 
   componentWillMount() {
@@ -29,7 +33,7 @@ export default class MyComponent extends Component {
   }
 
   renderContent() {
-    const { state: { loggedIn } } = this;
+    const { loggedIn } = this.state;
 
     if (loggedIn === null) {
       return <Spinner size="large" />;
@@ -38,7 +42,7 @@ export default class MyComponent extends Component {
     if (loggedIn) {
       return (
         <Button onPress={() => firebase.auth().signOut()}>
-        Log out
+          Log out
         </Button>
       );
     }
@@ -48,16 +52,12 @@ export default class MyComponent extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Header>Auth app</Header>
-        {this.renderContent()}
-      </View>
+      <Provider store={store}>
+        <View style={{ flex: 1 }}>
+          <Header>Auth app</Header>
+          {this.renderContent()}
+        </View>
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
