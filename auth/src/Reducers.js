@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import auth from './components/auth/AuthRedux';
+import auth from './resources/auth/AuthRedux';
 
 export default combineReducers({ auth });
