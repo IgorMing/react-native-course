@@ -33,8 +33,7 @@ class LoginForm extends Component {
         email,
         password,
         error,
-        setEmail,
-        setPassword
+        setField,
       }
     } = this;
 
@@ -43,7 +42,7 @@ class LoginForm extends Component {
         <CardSection>
           <Input
             labelText="Email"
-            onChangeText={(input) => setEmail(input)}
+            onChangeText={(input) => setField('email', input)}
             placeholderText="Type a user"
             value={email}
           />
@@ -51,7 +50,7 @@ class LoginForm extends Component {
         <CardSection>
             <Input
               labelText="Password"
-              onChangeText={(input) => setPassword(input)}
+              onChangeText={(input) => setField('password', input)}
               placeholderText="Password"
               secureTextEntry
               value={password}
@@ -72,8 +71,7 @@ LoginForm.propTypes = {
   loading: PropTypes.bool,
   login: PropTypes.func.isRequired,
   error: PropTypes.string,
-  setEmail: PropTypes.func.isRequired,
-  setPassword: PropTypes.func.isRequired,
+  setField: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
