@@ -51,7 +51,7 @@ export const login = (email, password) => (dispatch) => {
     .signInWithEmailAndPassword(email, password)
     .then((user) => {
       dispatch({ type: LOGIN, payload: user });
-      Actions.taskList();
+      Actions.main();
     })
     .catch((err) => dispatch(setError(err)));
 };

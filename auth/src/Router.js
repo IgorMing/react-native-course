@@ -8,7 +8,7 @@ import TaskCreate from './resources/tasks/TaskCreate';
 
 const logout = () => {
   firebase.auth().signOut();
-  Actions.login();
+  Actions.auth();
 };
 
 const RouterComponent = ({ loggedIn }) => {
@@ -18,33 +18,37 @@ const RouterComponent = ({ loggedIn }) => {
 
   return (
     <Router sceneStyle={{ paddingTop: 60 }}>
-      <Scene
-        key="login"
-        component={LoginForm}
-        title="Please, log in"
-        initial={!loggedIn}
-      />
+      <Scene key="auth" initial={!loggedIn}>
+        <Scene
+          key="login"
+          component={LoginForm}
+          title="Please, log in"
+          initial
+        />
+      </Scene>
 
-      <Scene
-        leftTitle="Log out"
-        onLeft={() => logout()}
-        onRight={() => Actions.taskCreate()}
-        rightTitle="Blabla"
-        key="taskList"
-        component={TaskList}
-        title="Task List! :D"
-        initial={loggedIn}
-      />
-      <Scene
-        key="taskCreate"
-        component={TaskCreate}
-        title="Create"
-      />
-      <Scene
-        key="taskDetails"
-        component={TaskDetails}
-        title="Details"
-      />
+      <Scene key="main" initial={loggedIn}>
+        <Scene
+          leftTitle="Log out"
+          onLeft={() => logout()}
+          onRight={() => Actions.taskCreate()}
+          rightTitle="Blabla"
+          key="taskList"
+          component={TaskList}
+          title="Task List! :D"
+          initial
+        />
+        <Scene
+          key="taskCreate"
+          component={TaskCreate}
+          title="Create"
+        />
+        <Scene
+          key="taskDetails"
+          component={TaskDetails}
+          title="Details"
+        />
+      </Scene>
     </Router>
   );
 };
