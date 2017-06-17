@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import firebase from 'firebase';
 import { Actions, Router, Scene } from 'react-native-router-flux';
 import LoginForm from './resources/auth/LoginForm';
@@ -8,7 +9,7 @@ import TaskCreate from './resources/tasks/TaskCreate';
 
 const logout = () => {
   firebase.auth().signOut();
-  Actions.auth();
+  Actions.loggedOut();
 };
 
 const RouterComponent = ({ loggedIn }) => {
@@ -18,7 +19,7 @@ const RouterComponent = ({ loggedIn }) => {
 
   return (
     <Router sceneStyle={{ paddingTop: 60 }}>
-      <Scene key="auth" initial={!loggedIn}>
+      <Scene key="loggedOut" initial={!loggedIn}>
         <Scene
           key="login"
           component={LoginForm}
@@ -27,7 +28,7 @@ const RouterComponent = ({ loggedIn }) => {
         />
       </Scene>
 
-      <Scene key="main" initial={loggedIn}>
+      <Scene key="loggedIn" initial={loggedIn}>
         <Scene
           leftTitle="Log out"
           onLeft={() => logout()}
@@ -51,6 +52,10 @@ const RouterComponent = ({ loggedIn }) => {
       </Scene>
     </Router>
   );
+};
+
+RouterComponent.propTypes = {
+  loggedIn: PropTypes.bool
 };
 
 export default RouterComponent;

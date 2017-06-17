@@ -1,6 +1,5 @@
-/* @flow */
-
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -12,8 +11,6 @@ class LoginForm extends Component {
     const { props: { email, password, login } } = this;
 
     login(email, password);
-
-    //     firebase.auth().createUserWithEmailAndPassword(email, password)
   }
 
   renderButton() {
@@ -68,6 +65,16 @@ class LoginForm extends Component {
     );
   }
 }
+
+LoginForm.propTypes = {
+  email: PropTypes.string,
+  password: PropTypes.string,
+  loading: PropTypes.bool,
+  login: PropTypes.func.isRequired,
+  error: PropTypes.string,
+  setEmail: PropTypes.func.isRequired,
+  setPassword: PropTypes.func.isRequired,
+};
 
 const styles = StyleSheet.create({
   container: {
