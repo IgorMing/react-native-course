@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import firebase from 'firebase';
 import { Actions, Router, Scene } from 'react-native-router-flux';
 import LoginForm from './resources/auth/LoginForm';
+import CreateUser from './resources/auth/CreateUser';
 import TaskList from './resources/tasks/TaskList';
 import TaskDetails from './resources/tasks/TaskDetails';
 import TaskCreate from './resources/tasks/TaskCreate';
@@ -25,6 +26,11 @@ const RouterComponent = ({ loggedIn }) => {
           component={LoginForm}
           title="Please, log in"
           initial
+        />
+        <Scene
+          key="createUser"
+          component={CreateUser}
+          title="Create an account"
         />
       </Scene>
 

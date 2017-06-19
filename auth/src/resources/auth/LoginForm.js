@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Text, StyleSheet } from 'react-native';
+import { Text, TouchableHighlight, StyleSheet } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
 import * as actions from './AuthRedux';
@@ -60,6 +61,9 @@ class LoginForm extends Component {
         <CardSection>
           {this.renderButton()}
         </CardSection>
+          <TouchableHighlight onPress={() => Actions.createUser()}>
+            <Text style={styles.createUserTextStyle}>Create an account</Text>
+          </TouchableHighlight>
       </Card>
     );
   }
@@ -82,6 +86,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignSelf: 'center',
     color: 'red'
+  },
+  createUserTextStyle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    alignSelf: 'center'
   }
 });
 
