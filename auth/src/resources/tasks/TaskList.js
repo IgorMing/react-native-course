@@ -5,7 +5,14 @@ export default class TaskList extends Component {
   render () {
     return (
       <View>
-        <Text>Task List!!!</Text>
+        <Text>Testando...</Text>
+        <Text>Testando...</Text>
+        <Text>Testando...</Text>
+        <Text>Testando...</Text>
+        <Text>Testando...</Text>
+        <Text>Testando...</Text>
+        <Text>Testando...</Text>
+        <Text>Testando...</Text>
       </View>
     );
   }
