@@ -1,8 +1,8 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 
-const CREATE_TASK = 'tasks/taskCreate/create-task';
-const SET_FIELD = 'tasks/taskCreate/set-field';
+const CREATE_TASK = 'tasks/taskRedux/create-task';
+const SET_FIELD = 'tasks/taskRedux/set-field';
 
 const INITIAL_STATE = {
   description: '',
