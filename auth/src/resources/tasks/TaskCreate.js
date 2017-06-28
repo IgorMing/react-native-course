@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Picker, StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -76,6 +77,12 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
+
+TaskCreate.propTypes = {
+  createTask: PropTypes.func,
+  setField: PropTypes.func,
+  task: PropTypes.object,
+};
 
 const mapStateToProps = ({ task }) => ({ task });
 

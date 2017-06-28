@@ -39,16 +39,16 @@ const RouterComponent = ({ loggedIn }) => {
           leftTitle="Log out"
           onLeft={() => logout()}
           onRight={() => Actions.taskCreate()}
-          rightTitle="Blabla"
+          rightTitle="Add new"
           key="taskList"
           component={TaskList}
-          title="Task List! :D"
+          title="Task List"
           initial
         />
         <Scene
           key="taskCreate"
           component={TaskCreate}
-          title="Create"
+          title="Create a task"
         />
         <Scene
           key="taskDetails"

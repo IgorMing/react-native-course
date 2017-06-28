@@ -1,30 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default class TaskCard extends Component {
-  render () {
-    const {
-      containerStyle,
-      titleStyle,
-      descriptionStyle,
-      mainContentStyle,
-      pointsContainerStyle
-    } = styles;
+const TaskCard = ({ title, description, storyPoints, id }) => {
+  const {
+    containerStyle,
+    idStyle,
+    titleStyle,
+    descriptionStyle,
+    mainContentStyle,
+    pointsContainerStyle
+  } = styles;
 
-    return (
-      <View style={containerStyle}>
-        <View style={mainContentStyle}>
-          <Text style={titleStyle}>title test</Text>
-          <Text style={descriptionStyle}>description test!!!</Text>
-        </View>
-        <View style={pointsContainerStyle}>
-          <Text>Story points</Text>
-          <Text>3</Text>
-        </View>
+  return (
+    <View style={containerStyle}>
+      <View style={mainContentStyle}>
+        <Text style={idStyle}>{id}</Text>
+        <Text style={titleStyle}>{title}</Text>
+        <Text style={descriptionStyle}>{description}</Text>
       </View>
-    );
-  }
-}
+      <View style={pointsContainerStyle}>
+        <Text>Story points</Text>
+        <Text>{storyPoints}</Text>
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   containerStyle: {
@@ -34,12 +35,15 @@ const styles = StyleSheet.create({
     borderColor: 'black',
   },
   mainContentStyle: {
-    flex: 4,
-    alignSelf: 'flex-start'
+    flex: 4
   },
   pointsContainerStyle: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  idStyle: {
+    fontSize: 12
   },
   titleStyle: {
     fontSize: 20
@@ -48,3 +52,12 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
 });
+
+TaskCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  id: PropTypes.string,
+  storyPoints: PropTypes.number.isRequired,
+};
+
+export default TaskCard;
